@@ -63,11 +63,25 @@ Use a real ISO date, for example year-month-day. Categories can include Treatmen
 
 ## Configure donation links
 
-The **`donations` array in `site-config.js` is the single location for all payment links**. All URLs start empty. Until real links are supplied, the site shows “Donation information coming soon,” and provider rows are plain text, not buttons.
+The **`donations` array in `site-config.js` is the single location for all payment links**. All URLs start empty. Until real links are supplied, the site shows “Donation information coming soon” and a plain-text note about planned providers. The hero also explains that donation links are being prepared.
 
 Paste a real, family-approved HTTPS campaign/profile URL into the corresponding `url`. GoFundMe, Venmo, and PayPal entries require the matching provider's official domain. An additional service may be added by appending `{ name: "Provider name", url: "" }` and then supplying its real HTTPS URL. URLs with embedded credentials, common placeholder markers, or HTTP are rejected. These checks are basic safeguards; they do **not** verify account ownership. Verify every destination and recipient manually before publishing.
 
-Approved links appear in Ways to Help and the footer, open in a new tab, and use `noopener noreferrer`. The hero support button always leads to Ways to Help. The site never handles payments or asks for payment details. Do not add API keys, account credentials, payment secrets, or invented accounts.
+The **first valid configured provider** appears as the main “Donate with [provider]” button; other active services appear as alternatives below. Reorder the array to choose the primary provider. A campaign with its story and goal is a useful first choice, but there is no universal best provider order. Empty/invalid services do not clutter the active list. Approved links also appear in the footer, open in a new tab, and use `noopener noreferrer`. Header, hero, and footer support links all lead to Ways to Help. The site never handles payments or asks for payment details. Do not add API keys, account credentials, payment secrets, or invented accounts.
+
+Set `supportPurpose` to an approved, factual explanation of what donations will help cover. Blank values keep a clearly labeled placeholder. Do not invent budgets, medical claims, or fundraising uses.
+
+## Optional fundraising goal and gauge
+
+The gauge is **off by default**. Prefer the campaign provider’s own current figures unless the family can maintain a separate accurate snapshot. To enable it, populate `fundraising` in `site-config.js` with `enabled: true`, a positive numeric `goal`, a nonnegative numeric `raised`, a three-letter `currency`, a valid nonfuture `asOf` date in `YYYY-MM-DD` format, and a nonempty `scope` explaining what is counted. At least one donation provider URL must also be configured. Invalid or incomplete settings leave the whole gauge hidden.
+
+The display explicitly says it is family-updated, dated, and not live. It never connects to an account or updates automatically. Verify every number with the family, avoid counting the same funds twice, and turn it off if it cannot be maintained. Do not add sample amounts to the public configuration. Read [USABILITY.md](USABILITY.md) for the research, limitations, and design rationale.
+
+## Baseline and sharing
+
+The initial site is preserved on the [`baseline-2026-11-02`](https://github.com/hurstpreston-creator/family-support-site/tree/baseline-2026-11-02) branch at commit `b46e07eb19693fcf148276026d76b7aeaaa5a843`. Publish new changes on `main`; keep the baseline branch unchanged.
+
+“Copy page link” copies only the configured canonical `siteUrl`, never a visitor’s query parameters. It collects no visitor data. If clipboard access is unavailable, a read-only field provides the link for manual copying. Real family-approved photos and words will provide the strongest personal connection; generic placeholders intentionally remain until consent.
 
 ## Publish changes
 

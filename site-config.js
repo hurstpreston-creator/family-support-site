@@ -25,8 +25,14 @@ window.SITE_CONFIG = {
     { date: "", category: "Treatment update", title: "Notes from the journey", body: "[Example: add a dated, family-approved treatment update. Share only what your loved one is comfortable making public.]", example: true },
     { date: "", category: "Milestones & messages", title: "Making room for small moments", body: "[Example: share a meaningful milestone, a family moment, or a personal message of gratitude.]", example: true }
   ],
+  // Explain real, family-approved uses of donations; blank keeps a labeled placeholder.
+  supportPurpose: "",
+  // Optional display only: no account connection, tracking, or automatic totals.
+  // Enable ONLY after the goal, raised amount, date, and scope are verified.
+  fundraising: { enabled: false, goal: null, raised: null, currency: "USD", asOf: "", scope: "" },
   // ONE LOCATION FOR PAYMENT LINKS. HTTPS only; never add credentials.
-  // The first configured provider becomes the primary option in Ways to Help.
+  // The FIRST valid configured provider is the primary button. Reorder to choose.
+  // Prefer a campaign with its story/goal first; keep approved alternatives below.
   donations: [
     { name: "GoFundMe", url: "" },
     { name: "Venmo", url: "" },
